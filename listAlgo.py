@@ -1,7 +1,5 @@
-listOne = [1,2,3,4,5,6,1]
-listTwo = []
-groupingSize = 3
-
+def groupBy():
+    return int( input("Enter number to group by: ") )
 
 def listLen( plainList ):
     listSize = 0
@@ -17,11 +15,17 @@ def emptyList(listLen, numberOfGroups):
         groupsDone += 1
     return template
 
-def newlist(template,listOne,numberOfGroups,groupSize,lastSize):
+def newlist(listOne,groupSize):
 
     groupsDone = 0
     newlist = []
     counter = 0
+
+    listLength = listLen( listOne )
+    numberOfGroups = ( listLength // groupingSize )
+    lastSize = ( listLength % groupingSize )
+
+    template = emptyList(listLength, numberOfGroups)
 
     for items in listOne:
         
@@ -39,16 +43,28 @@ def newlist(template,listOne,numberOfGroups,groupSize,lastSize):
         newlist = template
        
     return template
+
+def getList():
+    ungroupedList = []
+    item = input("Enter an [item or end] when done: ")
+    while item != "end":
+        ungroupedList.append(item)
+        item = input("Enter an [item or end] when done: ")
+
+    return ungroupedList
+
      
-
-listLength = listLen( listOne )
-numberOfGroups = ( listLength // groupingSize )
-lastSize = ( listLength % groupingSize )
-
-listTwo = emptyList(listLen, numberOfGroups)
-listTwo = newlist(listTwo,listOne,numberOfGroups,groupingSize,lastSize)
-    
-
+listOne = [1,2,3,4,5,6,1]
+groupingSize = groupBy()
+ouputlist = newlist(listOne,groupingSize)
 
 print( listOne )
-print( listTwo )
+print( ouputlist )
+
+#second test
+listOne = getList()
+groupingSize = groupBy()
+ouputlist = newlist(listOne,groupingSize)
+
+print( listOne )
+print( ouputlist )
